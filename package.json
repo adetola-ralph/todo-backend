@@ -1,0 +1,38 @@
+{
+  "name": "todo-backend",
+  "version": "1.0.0",
+  "description": "Todo app backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sequelize": "node_modules/.bin/sequelize"
+  },
+  "keywords": [
+    "todo",
+    "app",
+    "nodejs"
+  ],
+  "author": "oreofeoluwapo.olutola <oreofeoluwapo.olutola@andela.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "helmet": "^3.13.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.39.0",
+    "sequelize-cli": "^4.1.1",
+    "winston": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "dotenv": "^6.0.0",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "mocha": "^5.2.0",
+    "sinon": "^6.3.4",
+    "supertest": "^3.3.0"
+  }
+}
