@@ -95,7 +95,6 @@ class User extends Model {
    */
   static init(sequelize) {
     const model = super.init(User.modelFields, { sequelize });
-    model.beforeCreate(this.beforeHook);
     return model;
   }
 
