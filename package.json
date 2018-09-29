@@ -4,14 +4,23 @@
   "description": "Todo app backend",
   "main": "index.js",
   "scripts": {
+    "pretest": "NODE_ENV=test dropdb --if-exists todo-test && createdb todo-test && NODE_ENV=test yarn run migration && NODE_ENV=test yarn run seed",
+    "posttest": "dropdb todo-test",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sequelize": "node_modules/.bin/sequelize"
+    "sequelize": "node_modules/.bin/sequelize",
+    "start:dev": "nodemon index.js",
+    "start": "node index.js",
+    "migration": "node_modules/.bin/sequelize db:migrate",
+    "seed": "node_modules/.bin/sequelize db:seed:all"
   },
   "keywords": [
     "todo",
     "app",
     "nodejs"
   ],
+  "engines": {
+    "node": ">8"
+  },
   "author": "oreofeoluwapo.olutola <oreofeoluwapo.olutola@andela.com>",
   "license": "ISC",
   "dependencies": {
@@ -35,6 +44,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
     "sinon": "^6.3.4",
     "supertest": "^3.3.0"
   }
