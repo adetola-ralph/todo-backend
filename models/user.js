@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
  * @class Users
  */
 class User extends Model {
-  static metaFields = {
+  static modelFields = {
     id: {
       type: Sequelize.UUID,
       primaryKey: true
