@@ -49,10 +49,15 @@ class TodoList extends Model {
    * @memberof TodoList
    */
   static associate(models) {
-    const { TodoTask } = models;
+    const { TodoTask, User } = models;
 
     TodoList.hasMany(TodoTask, {
       foreignKey: 'todoListId',
+    });
+
+    TodoList.belongsTo(User, {
+      foreignKey: 'userId',
+      as: 'owner'
     });
   }
 }

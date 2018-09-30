@@ -118,7 +118,13 @@ class User extends Model {
    * @param {*} models - all models in the application
    * @memberof User
    */
-  static associate(models) {}
+  static associate(models) {
+    const { TodoList } = models;
+
+    User.hasMany(TodoList, {
+      foreignKey: 'userId'
+    });
+  }
 }
 
 module.exports = Users;
