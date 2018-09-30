@@ -56,7 +56,11 @@ class TodoTask extends Model {
    * @memberof TodoTask
    */
   static associate(models) {
+    const { TodoList } = models;
 
+    TodoTask.belongsTo(TodoList, {
+      foreignKey: 'todoListId',
+    });
   }
 };
 
