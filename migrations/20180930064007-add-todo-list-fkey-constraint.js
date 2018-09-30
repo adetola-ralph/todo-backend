@@ -1,19 +1,22 @@
+const logger = require('./../services/logger');
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    const result = await queryInterface.addColumn('TodoTasks', 'todoListId', {
-      type: Sequelize.UUID,
-      allowNull: false,
-      references: {
-        model: 'TodoLists',
-        key: 'id',
-      }
-    });
-
-    return result;
+    try {
+      const result = await queryInterface.addColumn('TodoTasks', 'todoListId', {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'TodoLists',
+          key: 'id',
+        }
+      });
+      return result;
+    } catch (error) {
+      logger.error(error);
+    }
   },
 
-  down: async (queryInterface) => {
-    const result = await queryInterface.removeColumn('TodoTasks', 'todoListId');
-    return result;
-  }
+  down: async queryInterface => queryInterface.removeColumn('TodoTasks', 'todoListId')
+    .catch(error => logger.error(error))
 };

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
  * @extends {Model}
  */
 class TodoList extends Model {
-  static metaFields = {
+  static modelFields = {
     id: {
       type: Sequelize.UUID,
       primaryKey: true
