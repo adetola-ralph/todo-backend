@@ -7,7 +7,7 @@ module.exports = {
       defaultValue: true,
     },
     userId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
@@ -16,7 +16,7 @@ module.exports = {
       }
     },
     todoTaskId: {
-      type: Sequelize.UUID,
+      type: Sequelize.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {

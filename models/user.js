@@ -1,19 +1,9 @@
-const { Sequelize, Model } = require('sequelize');
 const bcrypt = require('bcrypt');
 
-/**
- * User model class
- *
- * @class Users
- */
-class User extends Model {
-  static modelFields = {
-    id: {
-      type: Sequelize.UUID,
-      primaryKey: true
-    },
+module.exports = (sequelize, DataTypes) => {
+  const User = sequelize.define('User', {
     firstname: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         is: {
@@ -26,7 +16,7 @@ class User extends Model {
       }
     },
     surname: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         is: {
@@ -40,7 +30,7 @@ class User extends Model {
     },
     email: {
       allowNull: false,
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       unique: {
         args: true,
         msg: 'Oops. There is an existing account with this email address.',
@@ -56,7 +46,7 @@ class User extends Model {
       }
     },
     imageUrl: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         isValidImageUrl(value) {
@@ -70,7 +60,7 @@ class User extends Model {
       }
     },
     password: {
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
       allowNull: true,
       validate: {
         isLongEnough(value) {
@@ -83,48 +73,19 @@ class User extends Model {
         }
       }
     },
-  };
+  }, {});
 
-  /**
-   * Initializes the user model
-   *
-   * @static
-   * @param {*} sequelize - the sequelize obbject
-   * @returns {object} the User model
-   * @memberof User
-   */
-  static init(sequelize) {
-    const model = super.init(User.modelFields, { sequelize });
-    return model;
-  }
-
-  /**
-   * Compares string password with the hashed password
-   *
-   * @static
-   * @param {any} password the supplied password
-   * @param {any} hashedPassword the hashed password
-   * @returns {boolean} the result of the password comparison
-   * @memberof User
-   */
-  static comparePassword(password, hashedPassword) {
-    return bcrypt.compareSync(password, hashedPassword);
-  }
-
-  /**
-   * User mode association
-   *
-   * @static
-   * @param {*} models - all models in the application
-   * @memberof User
-   */
-  static associate(models) {
+  User.associate = function associations(models) {
     const { TodoList } = models;
 
     User.hasMany(TodoList, {
       foreignKey: 'userId'
     });
-  }
-}
+  };
 
-module.exports = Users;
+  User.comparePassword = function comparePassword(password, hashedPassword) {
+    return bcrypt.compareSync(password, hashedPassword);
+  };
+
+  return User;
+};

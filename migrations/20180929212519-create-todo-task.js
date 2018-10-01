@@ -4,8 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('TodoTasks', {
     id: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.UUID
+      type: Sequelize.INTEGER
     },
     task: {
       type: Sequelize.STRING,

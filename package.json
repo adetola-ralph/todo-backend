@@ -4,9 +4,9 @@
   "description": "Todo app backend",
   "main": "index.js",
   "scripts": {
-    "pretest": "NODE_ENV=test dropdb --if-exists todo-test && createdb todo-test && NODE_ENV=test yarn run migration && NODE_ENV=test yarn run seed",
+    "pretest": "NODE_ENV=test dropdb --if-exists todo-test && createdb todo-test && NODE_ENV=test yarn run migration",
     "posttest": "dropdb todo-test",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": " node_modules/.bin/mocha tests",
     "sequelize": "node_modules/.bin/sequelize",
     "start:dev": "nodemon index.js",
     "start": "node index.js",
@@ -19,7 +19,7 @@
     "nodejs"
   ],
   "engines": {
-    "node": ">=8"
+    "node": "9.*"
   },
   "author": "oreofeoluwapo.olutola <oreofeoluwapo.olutola@andela.com>",
   "license": "ISC",
@@ -36,7 +36,6 @@
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.39.0",
     "sequelize-cli": "^4.1.1",
-    "uuid": "^3.3.2",
     "winston": "^3.1.0"
   },
   "devDependencies": {

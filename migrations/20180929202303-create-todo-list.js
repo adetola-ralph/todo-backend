@@ -4,8 +4,9 @@ module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('TodoLists', {
     id: {
       allowNull: false,
+      autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.UUID
+      type: Sequelize.INTEGER
     },
     name: {
       type: Sequelize.STRING,

@@ -1,31 +1,12 @@
-const { Sequelize, Models } = require('sequelize');
-
-class Favorite extends Models {
-  static modelFields = {
+module.exports = (sequelize, DataTypes) => {
+  const Favorite = sequelize.define('Favorite', {
     favorited: {
-      type: Sequelize.BOOLEAN,
+      type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
-  }
+  }, {});
 
-  /**
-   * Initializes the favorite model
-   *
-   * @static
-   * @param {*} Sequelize - the sequelize object
-   * @memberof Favorite - Favorite model
-   */
-  static init(sequelize) {
-    return super.init(Model.modelFields, { sequelize });
-  }
-
-  /**
-   * Favorite model association
-   *
-   * @static
-   * @memberof Favorite
-   */
-  static associate(models) {
+  Favorite.associate = function association(models) {
     const { User, TodoTask } = models;
 
     Favorite.belongsTo(User, {
@@ -35,7 +16,7 @@ class Favorite extends Models {
     Favorite.belongsTo(TodoTask, {
       foreignKey: 'todoTaskId',
     });
-  }
-}
+  };
 
-module.exports = Favorite;
+  return Favorite;
+};
